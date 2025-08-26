@@ -49,8 +49,21 @@ app.post('/login', (req, res) => {
 
 // Add new expense ****Bua****
 
-// Delete expense ****Gus****
-
+// Delete expense ****Bua****
+app.delete('/expense/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM expense WHERE id = ?";
+    con.query(sql, [id], function(err, result) {
+        if(err) {
+            return res.status(500).send("Database error");
+        }
+        if(result.affectedRows > 0) {
+            res.sendStatus(200);
+        } else {
+            res.status(404).send("Item not found");
+        }
+    });
+});
 // Server starts here ****Nook****
 const PORT = 3000;
 app.listen(PORT, () => {
