@@ -46,6 +46,16 @@ app.post('/login', (req, res) => {
 });
 
 // Get expenses by username (via user_id) ****Gus****
+app.get('/expenses/:username', (req, res) => {
+    const username = req.params.username;
+    const sql = "SELECT e.id, e.item, e.paid, e.date FROM expense e JOIN users u ON e.user_id = u.id WHERE u.username = ?";
+    con.query(sql, [username], function(err, results) {
+        if(err) {
+            return res.status(500).send("Database server error");
+        }
+        res.json(results);
+    });
+});
 
 // Add new expense ****Bua****
 
