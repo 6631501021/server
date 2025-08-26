@@ -58,7 +58,6 @@ app.get('/expenses/:username', (req, res) => {
 });
 
 // Add new expense ****Bua****
-<<<<<<< HEAD
 app.post('/expense', (req, res) => {
     const { username, item, paid } = req.body;
     const sql = "INSERT INTO expense (user_id, item, paid, date) SELECT id, ?, ?, NOW() FROM users WHERE username = ?";
@@ -69,9 +68,6 @@ app.post('/expense', (req, res) => {
         res.sendStatus(200);
     });
 });
-// Delete expense ****Gus****
-
-=======
 
 // Delete expense ****Bua****
 app.delete('/expense/:id', (req, res) => {
@@ -88,7 +84,6 @@ app.delete('/expense/:id', (req, res) => {
         }
     });
 });
->>>>>>> origin/deleteexpense
 // Server starts here ****Nook****
 const PORT = 3000;
 app.listen(PORT, () => {
