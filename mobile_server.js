@@ -58,6 +58,7 @@ app.get('/expenses/:username', (req, res) => {
 });
 
 // Add new expense ****Bua****
+<<<<<<< HEAD
 app.post('/expense', (req, res) => {
     const { username, item, paid } = req.body;
     const sql = "INSERT INTO expense (user_id, item, paid, date) SELECT id, ?, ?, NOW() FROM users WHERE username = ?";
@@ -70,6 +71,24 @@ app.post('/expense', (req, res) => {
 });
 // Delete expense ****Gus****
 
+=======
+
+// Delete expense ****Bua****
+app.delete('/expense/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "DELETE FROM expense WHERE id = ?";
+    con.query(sql, [id], function(err, result) {
+        if(err) {
+            return res.status(500).send("Database err");
+        }
+        if(result.affectedRows > 0) {
+            res.sendStatus(200);
+        } else {
+            res.status(404).send("Item not found");
+        }
+    });
+});
+>>>>>>> origin/deleteexpense
 // Server starts here ****Nook****
 const PORT = 3000;
 app.listen(PORT, () => {
