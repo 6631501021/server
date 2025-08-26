@@ -48,7 +48,16 @@ app.post('/login', (req, res) => {
 // Get expenses by username (via user_id) ****Gus****
 
 // Add new expense ****Bua****
-
+app.post('/expense', (req, res) => {
+    const { username, item, paid } = req.body;
+    const sql = "INSERT INTO expense (user_id, item, paid, date) SELECT id, ?, ?, NOW() FROM users WHERE username = ?";
+    con.query(sql, [item, paid, username], function(err, result) {
+        if(err) {
+            return res.status(500).send("Database error");
+        }
+        res.sendStatus(200);
+    });
+});
 // Delete expense ****Gus****
 
 // Server starts here ****Nook****
