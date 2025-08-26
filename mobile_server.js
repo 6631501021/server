@@ -55,7 +55,7 @@ app.delete('/expense/:id', (req, res) => {
     const sql = "DELETE FROM expense WHERE id = ?";
     con.query(sql, [id], function(err, result) {
         if(err) {
-            return res.status(500).send("Database error");
+            return res.status(500).send("Database err");
         }
         if(result.affectedRows > 0) {
             res.sendStatus(200);
